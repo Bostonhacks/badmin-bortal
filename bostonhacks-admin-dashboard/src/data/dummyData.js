@@ -24,7 +24,7 @@ export const dummyApps = [
         whyBostonhacks: "An opportunity to push my skill in building applications in a very short period of time, connect with other amazing people, learn business skills",
         applicationYear: "2025",
         userId: "kI6rcgzUTLP2KW4c4BY1XSfnMiU2",
-        status: PENDING
+        status: "ACCEPTED"
     },
     {
         id: 1,

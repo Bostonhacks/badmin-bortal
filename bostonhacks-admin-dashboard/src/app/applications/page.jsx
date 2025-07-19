@@ -1,18 +1,21 @@
 'use client';
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState, useMemo } from "react";
 import { DataGrid } from '@mui/x-data-grid';
 import { Dialog, DialogTitle, DialogContent, List, ListItem, ListItemText, Button } from '@mui/material';
+
+//dummy data import 
+import { dummyApps } from "../../data/dummyData";
 
 
 function ApplicantModal({ open, handleClose, applicant }) {
     return (
         <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
             <DialogTitle style={{ backgroundColor: '#252526', color: 'white' }}>Applicant Details</DialogTitle>
-            <DialogContent style={{ backgroundColor: '#252526', color: 'white'}}>
+            <DialogContent style={{ backgroundColor: '#252526', color: 'white' }}>
                 <List>
                     {Object.entries(applicant).map(([key, value]) => (
                         <ListItem key={key} style={{ color: 'white' }}>
-                            <ListItemText primary={key} secondary={value || 'N/A'} primaryTypographyProps={{ style: { color: 'white' } }} secondaryTypographyProps={{ style: { color: 'white' } }}/>
+                            <ListItemText primary={key} secondary={value || 'N/A'} primaryTypographyProps={{ style: { color: 'white' } }} secondaryTypographyProps={{ style: { color: 'white' } }} />
                         </ListItem>
                     ))}
                 </List>
@@ -33,10 +36,26 @@ export default function ApplicationPage() {
         pending: 0
     });
 
+    // useEffect(() => {
+    //     fetch(`/api/applicant`)
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             setApplicants(data);
+    //             const counts = {
+    //                 applied: data.length,
+    //                 rejected: data.filter(app => app.status === 'Rejected').length,
+    //                 accepted: data.filter(app => app.status === 'Accepted').length,
+    //                 waitlisted: data.filter(app => app.status === 'Waitlisted').length,
+    //                 pending: data.filter(app => app.status === 'Pending').length
+    //             };
+    //             setStatusCounts(counts);
+    //         });
+    // }, []);
+
     useEffect(() => {
-        fetch(`/api/applicant`)
-        .then(res => res.json())
-        .then(data => {setApplicants(data);
+        const data = dummyApps;
+        setApplicants(data);
+
         const counts = {
             applied: data.length,
             rejected: data.filter(app => app.status === 'Rejected').length,
@@ -45,13 +64,12 @@ export default function ApplicationPage() {
             pending: data.filter(app => app.status === 'Pending').length
         };
         setStatusCounts(counts);
-        });
     }, []);
 
-    const handleOpenModal = (applicant) => {
+    const handleOpenModal = useCallback((applicant) => {
         setSelectedApplicant(applicant);
         setModalOpen(true);
-    };
+    }, []);
 
     const handleCloseModal = () => {
         setModalOpen(false);
@@ -81,22 +99,22 @@ export default function ApplicationPage() {
             flex: 2,
             renderCell: (params) => (
                 <>
-                    <Button 
-                        variant="contained" 
-                        color="primary" 
+                    <Button
+                        variant="contained"
+                        color="primary"
                         style={{ backgroundColor: '#1976D2', color: 'white', marginRight: 8 }}
                         onClick={() => handleOpenModal(params.row)}
                     >
                         View
                     </Button>
-                    <Button 
-                        variant="contained" 
+                    <Button
+                        variant="contained"
                         style={{ backgroundColor: '#4CAF50', color: 'white', marginRight: 8 }}
                     >
                         Accept
                     </Button>
-                    <Button 
-                        variant="contained" 
+                    <Button
+                        variant="contained"
                         style={{ backgroundColor: '#F44336', color: 'white' }}
                     >
                         Reject
