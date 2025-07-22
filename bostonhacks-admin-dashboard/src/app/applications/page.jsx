@@ -4,7 +4,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import { Dialog, DialogTitle, DialogContent, List, ListItem, ListItemText, Button } from '@mui/material';
 
 //dummy data import 
-import { dummyApps } from "../../data/dummyData";
+import { dummyApps, dummyUsers } from "../../data/dummyData";
 
 
 function ApplicantModal({ open, handleClose, applicant }) {
@@ -53,7 +53,7 @@ export default function ApplicationPage() {
     // }, []);
 
     useEffect(() => {
-        const data = dummyApps;
+        const data = dummyUsers;
         setApplicants(data);
 
         const counts = {
