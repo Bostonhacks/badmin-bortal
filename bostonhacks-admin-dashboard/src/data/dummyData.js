@@ -277,3 +277,117 @@ export const dummyApps = [
         status: "PENDING"
     }
 ];
+
+
+export const dummyUsers = [
+    {
+        id: "u1",
+        email: "alice.han@example.com",
+        firstName: "Alice",
+        lastName: "Han",
+        avatar: "https://example.com/avatar1.jpg",
+        role: "USER",
+        authProvider: "EMAIL",
+        password: "password123",
+        applications: []
+    },
+    {
+        id: "u2",
+        email: "bob.smith@example.com",
+        firstName: "Bob",
+        lastName: "Smith",
+        avatar: "https://example.com/avatar2.jpg",
+        role: "USER",
+        authProvider: "GOOGLE",
+        password: null,
+        applications: []
+    },
+    {
+        id: "u3",
+        email: "carol.jones@example.com",
+        firstName: "Carol",
+        lastName: "Jones",
+        avatar: "https://example.com/avatar3.jpg",
+        role: "ADMIN",
+        authProvider: "EMAIL",
+        password: "adminpass",
+        applications: []
+    },
+    {
+        id: "u4",
+        email: "david.lee@example.com",
+        firstName: "David",
+        lastName: "Lee",
+        avatar: null,
+        role: "USER",
+        authProvider: "EMAIL",
+        password: "davidpass",
+        applications: []
+    },
+    {
+        id: "u5",
+        email: "emma.taylor@example.com",
+        firstName: "Emma",
+        lastName: "Taylor",
+        avatar: "https://example.com/avatar5.jpg",
+        role: "USER",
+        authProvider: "GOOGLE",
+        password: null,
+        applications: []
+    },
+    {
+        id: "u6",
+        email: "frank.brown@example.com",
+        firstName: "Frank",
+        lastName: "Brown",
+        avatar: null,
+        role: "USER",
+        authProvider: "EMAIL",
+        password: "frank123",
+        applications: []
+    },
+    {
+        id: "u7",
+        email: "grace.kim@example.com",
+        firstName: "Grace",
+        lastName: "Kim",
+        avatar: "https://example.com/avatar7.jpg",
+        role: "ADMIN",
+        authProvider: "GOOGLE",
+        password: null,
+        applications: []
+    },
+    {
+        id: "u8",
+        email: "henry.wilson@example.com",
+        firstName: "Henry",
+        lastName: "Wilson",
+        avatar: "https://example.com/avatar8.jpg",
+        role: "USER",
+        authProvider: "EMAIL",
+        password: "henrypwd",
+        applications: []
+    },
+    {
+        id: "u9",
+        email: "isabel.martin@example.com",
+        firstName: "Isabel",
+        lastName: "Martin",
+        avatar: null,
+        role: "USER",
+        authProvider: "EMAIL",
+        password: "isabel123",
+        applications: []
+    },
+    {
+        id: "u10",
+        email: "jack.miller@example.com",
+        firstName: "Jack",
+        lastName: "Miller",
+        avatar: "https://example.com/avatar10.jpg",
+        role: "USER",
+        authProvider: "GOOGLE",
+        password: null,
+        applications: []
+    }
+];
