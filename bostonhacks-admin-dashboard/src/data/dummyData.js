@@ -23,7 +23,7 @@ export const dummyApps = [
         portfolio: "",
         whyBostonhacks: "An opportunity to push my skill in building applications in a very short period of time, connect with other amazing people, learn business skills",
         applicationYear: "2025",
-        userId: "kI6rcgzUTLP2KW4c4BY1XSfnMiU2",
+        userId: "u1",
         status: "ACCEPTED"
     },
     {
@@ -48,7 +48,7 @@ export const dummyApps = [
         portfolio: "https://alicedev.me",
         whyBostonhacks: "I'm excited to attend BostonHacks because I want to challenge myself, build innovative tech with new people, and immerse myself in the Boston hackathon community.",
         applicationYear: 2025,
-        userId: 42,
+        userId: "u2",
         status: "PENDING"
     },
     {
@@ -73,7 +73,7 @@ export const dummyApps = [
         portfolio: "https://johndev.tech",
         whyBostonhacks: "I want to attend BostonHacks to gain more experience in collaborative coding and learn new tech stacks.",
         applicationYear: 2025,
-        userId: 43,
+        userId: "u3",
         status: "PENDING"
     },
     {
@@ -98,7 +98,7 @@ export const dummyApps = [
         portfolio: "https://devnb.io",
         whyBostonhacks: "I've heard great things about BostonHacks and am eager to collaborate on socially impactful projects.",
         applicationYear: 2025,
-        userId: 44,
+        userId: "u4",
         status: "PENDING"
     },
     {
@@ -123,7 +123,7 @@ export const dummyApps = [
         portfolio: "https://samantha.dev",
         whyBostonhacks: "To build fun and innovative projects with students from across the country.",
         applicationYear: 2025,
-        userId: 45,
+        userId: "u5",
         status: "PENDING"
     },
     {
@@ -148,7 +148,7 @@ export const dummyApps = [
         portfolio: "https://miguelai.dev",
         whyBostonhacks: "I want to meet other AI enthusiasts and collaborate on challenging problems.",
         applicationYear: 2025,
-        userId: 46,
+        userId: "u6",
         status: "PENDING"
     },
     {
@@ -173,7 +173,7 @@ export const dummyApps = [
         portfolio: "https://minbu.dev",
         whyBostonhacks: "To get involved in the local tech scene and meet other hackers!",
         applicationYear: 2025,
-        userId: 47,
+        userId: "u7",
         status: "PENDING"
     },
     {
@@ -198,7 +198,7 @@ export const dummyApps = [
         portfolio: "https://ammar.dev",
         whyBostonhacks: "To build something innovative in cybersecurity with a team of passionate peers.",
         applicationYear: 2025,
-        userId: 48,
+        userId: "u8",
         status: "PENDING"
     },
     {
@@ -223,7 +223,7 @@ export const dummyApps = [
         portfolio: "https://evelyn.dev",
         whyBostonhacks: "I've always wanted to attend a hackathon on the East Coast and network with students in Boston.",
         applicationYear: 2025,
-        userId: 49,
+        userId: "u9",
         status: "PENDING"
     },
     {
@@ -248,7 +248,7 @@ export const dummyApps = [
         portfolio: "https://dukehci.dev",
         whyBostonhacks: "To collaborate with designers and developers on HCI-focused projects.",
         applicationYear: 2025,
-        userId: 50,
+        userId: "u10",
         status: "PENDING"
     },
     {
@@ -273,7 +273,7 @@ export const dummyApps = [
         portfolio: "https://gtechmech.dev",
         whyBostonhacks: "I want to explore intersections between hardware and software at BostonHacks.",
         applicationYear: 2025,
-        userId: 51,
+        userId: "u11",
         status: "PENDING"
     }
 ];

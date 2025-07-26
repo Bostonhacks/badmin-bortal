@@ -3,31 +3,16 @@ import { useCallback, useEffect, useState, useMemo } from "react";
 import { DataGrid } from '@mui/x-data-grid';
 import { Dialog, DialogTitle, DialogContent, List, ListItem, ListItemText, Button } from '@mui/material';
 
+import ApplicationDetails from './components/applicationDetails'; // Import the modal component
+
 //dummy data import 
 import { dummyApps, dummyUsers } from "../../data/dummyData";
-
-
-function ApplicantModal({ open, handleClose, applicant }) {
-    return (
-        <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
-            <DialogTitle style={{ backgroundColor: '#252526', color: 'white' }}>Applicant Details</DialogTitle>
-            <DialogContent style={{ backgroundColor: '#252526', color: 'white' }}>
-                <List>
-                    {Object.entries(applicant).map(([key, value]) => (
-                        <ListItem key={key} style={{ color: 'white' }}>
-                            <ListItemText primary={key} secondary={value || 'N/A'} primaryTypographyProps={{ style: { color: 'white' } }} secondaryTypographyProps={{ style: { color: 'white' } }} />
-                        </ListItem>
-                    ))}
-                </List>
-            </DialogContent>
-        </Dialog>
-    );
-}
+import App from "next/app";
 
 export default function ApplicationPage() {
     const [applicants, setApplicants] = useState([]);
     const [modalOpen, setModalOpen] = useState(false);
-    const [selectedApplicant, setSelectedApplicant] = useState({});
+    const [selectedApplicant, setSelectedApplicant] = useState(null);
     const [statusCounts, setStatusCounts] = useState({
         applied: 0,
         rejected: 0,
@@ -156,57 +141,62 @@ export default function ApplicationPage() {
             <h2 className="text-4xl font-bold text-center mb-8">
                 BostonHacks Admin Portal
             </h2>
-            {/* <div style={{ ...cardStyles, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                {Object.entries(statusCounts).map(([key, value]) => (
-                    <div className=" shadow-lg rounded-lg p-5 flex flex-col items-center justify-center">
-                        <span className="text-lg font-semibold">{key.charAt(0).toUpperCase() + key.slice(1)}</span>
-                        <span className="text-2xl font-bold">{value}</span>
-                    </div>
-                ))}
-            </div> */}
-            {/* <div style={cardStyles}>
-                <h1 className="text-3xl font-bold text-center mb-5">Applications</h1>
-                <DataGrid
-                    rows={applicants.map(applicant => ({ ...applicant, id: applicant.id }))}
-                    columns={columns}
-                    pageSizeOptions={[5, 10, 25, 50, 100]}
-                    initialState={{
-                        pagination: { pageSize: 25 },
-                    }}
-                    disableSelectionOnClick
-                    className="bg-white"
-                />
-            </div> */}
-            <table className="min-w-full bg-gray-300 text-white border border-gray-700 divide-y divide-gray-700">
-                <thead>
-                    <tr className="bg-gray-900 text-white border-b border-gray-700 divide-x divide-gray-700">
-                        <th className="px-4 py-2 text-2xl">First Name</th>
-                        <th className="px-4 py-2 text-2xl">Last Name</th>
-                        <th className="px-4 py-2 text-2xl">Email</th>
-                        <th className="px-4 py-2 text-2xl">School</th>
-                        <th className="px-4 py-2 text-2xl">GitHub</th>
-                        <th className="px-4 py-2 text-2xl">Application</th>
-                        <th className="px-4 py-2 text-2xl">Status</th>
-                    </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-700">
-                    {rows.map((row) => (
-                        <tr key={row.id} className="divide-x divide-gray-700 text-gray-900">
-                            <td className="px-4 py-2">{row.firstName}</td>
-                            <td className="px-4 py-2">{row.lastName}</td>
-                            <td className="px-4 py-2">{row.email}</td>
-                            <td className="px-4 py-2">{row.schoolLabel}</td>
-                            <td className="px-4 py-2">{row.github}</td>
-                            <td className="px-4 py-2">
-                                <Button variant="contained" color="primary" onClick={() => handleOpenModal(row)}>
-                                    View
-                                </Button>
-                            </td>
+            {selectedApplicant == null ? (
+                <table className="min-w-full bg-gray-300 text-white border border-gray-700 divide-y divide-gray-700">
+                    <thead>
+                        <tr className="bg-gray-900 text-white border-b border-gray-700 divide-x divide-gray-700">
+                            <th className="px-4 py-2 text-2xl">First Name</th>
+                            <th className="px-4 py-2 text-2xl">Last Name</th>
+                            <th className="px-4 py-2 text-2xl">Email</th>
+                            <th className="px-4 py-2 text-2xl">School</th>
+                            <th className="px-4 py-2 text-2xl">Status</th>
+                            <th className="px-4 py-2 text-2xl">Application</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
-            <ApplicantModal open={modalOpen} handleClose={handleCloseModal} applicant={selectedApplicant} />
+                    </thead>
+                    <tbody className="divide-y divide-gray-700">
+                        {rows.map((row) => (
+                            <tr key={row.id} className="divide-x divide-gray-700 text-gray-900">
+                                <td className="px-4 py-2">{row.firstName}</td>
+                                <td className="px-4 py-2">{row.lastName}</td>
+                                <td className="px-4 py-2">{row.email}</td>
+                                <td className="px-4 py-2">{row.schoolLabel}</td>
+                                <td className="px-4 py-2">{row.status}</td>
+                                <td className="px-4 py-2">
+                                    <Button variant="contained" className="bg-blue-500 hover:bg-blue-600" onClick={() => setSelectedApplicant(row.id)}>
+                                        View
+                                    </Button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            ) : (
+                // <body class="h-screen m-0 font-sans">
+                <div class="flex h-full">
+                    <div class="w-1/5 border-r border-gray-300 overflow-y-auto">
+                        <table class="min-w-full table-auto">
+                            <thead class="sticky top-0 bg-gray-200">
+                                <tr>
+                                    <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Name</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white">
+                                {rows.map((row) => (
+                                    <tr key={row.id} class="hover:bg-gray-100 cursor-pointer" onClick={() => setSelectedApplicant(row.id)}>
+                                        <td class="px-4 py-2">{row.firstName} {row.lastName}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="flex-1 p-6 overflow-y-auto">
+                        <h2 class="text-2xl font-semibold mb-4">Application Details</h2>
+                        <ApplicationDetails userId={selectedApplicant} />
+                    </div>
+                </div>
+                // </body>
+            )}
+            {/* <ApplicantModal open={modalOpen} handleClose={handleCloseModal} applicant={selectedApplicant} /> */}
         </main>
     );
 }
