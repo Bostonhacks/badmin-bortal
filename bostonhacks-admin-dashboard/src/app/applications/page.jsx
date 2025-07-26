@@ -144,6 +144,7 @@ export default function ApplicationPage() {
             {selectedApplicant == null ? (
                 <table className="min-w-full bg-gray-300 text-white border border-gray-700 divide-y divide-gray-700">
                     <thead>
+                        {/* TODO: talk to derek/declan about what info should be displayed here for api endpoint */}
                         <tr className="bg-gray-900 text-white border-b border-gray-700 divide-x divide-gray-700">
                             <th className="px-4 py-2 text-2xl">First Name</th>
                             <th className="px-4 py-2 text-2xl">Last Name</th>
@@ -161,7 +162,8 @@ export default function ApplicationPage() {
                                 <td className="px-4 py-2">{row.email}</td>
                                 <td className="px-4 py-2">{row.schoolLabel}</td>
                                 <td className="px-4 py-2">{row.status}</td>
-                                <td className="px-4 py-2">
+                                {/* alternatively, could get rid of this row and maybe just add a button?? */}
+                                <td className="px-4 py-2 text-center">
                                     <Button variant="contained" className="bg-blue-500 hover:bg-blue-600" onClick={() => setSelectedApplicant(row.id)}>
                                         View
                                     </Button>
@@ -171,7 +173,6 @@ export default function ApplicationPage() {
                     </tbody>
                 </table>
             ) : (
-                // <body class="h-screen m-0 font-sans">
                 <div class="flex h-full">
                     <div class="w-1/5 border-r border-gray-300 overflow-y-auto">
                         <table class="min-w-full table-auto">
@@ -194,9 +195,7 @@ export default function ApplicationPage() {
                         <ApplicationDetails userId={selectedApplicant} />
                     </div>
                 </div>
-                // </body>
             )}
-            {/* <ApplicantModal open={modalOpen} handleClose={handleCloseModal} applicant={selectedApplicant} /> */}
         </main>
     );
 }
